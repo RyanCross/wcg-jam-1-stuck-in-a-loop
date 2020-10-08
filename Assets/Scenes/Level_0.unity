@@ -925,6 +925,10 @@ PrefabInstance:
       propertyPath: timeToFade
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 4163961140343371769, guid: 1042d5fc5bb68554eb70c360d85e4fd4, type: 3}
+      propertyPath: timeTillFadeStart
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4163961140343371773, guid: 1042d5fc5bb68554eb70c360d85e4fd4, type: 3}
       propertyPath: m_Name
       value: Prompt (TMP)

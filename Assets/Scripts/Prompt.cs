@@ -6,15 +6,15 @@ using TMPro;
 
 public class Prompt : MonoBehaviour
 {
-    public TMP_Text text;
-
-    public float timeToFade;
     public bool shouldDisplayPrompt { get; set; }
-    public GameObject timerObject;
+    public float timeTillFadeStart;
+    public float promptDisplayLength;
+
     private bool promptShown = false;
-    private float timeTillFade;
-    private Color fadeColor = new Color(1f, 1f, 1f, 0f);
-    private int textAlpha;
+    private int curTextAlpha;
+
+    public TMP_Text text;
+    public GameObject timerObject;
 
     private void Awake()
     {
@@ -26,7 +26,6 @@ public class Prompt : MonoBehaviour
     {
         text = GetComponent<TMP_Text>();
         text.color = Color.clear;
-        timeTillFade = timeToFade;
     }
 
     // Update is called once per frame
@@ -36,24 +35,28 @@ public class Prompt : MonoBehaviour
         {
             if (promptShown == false)
             {
-                text.color = Color.white;
+                text.color = Color.white; // display the prompt
                 promptShown = true;
             }
             fadePrompt();
         }
     }
 
+    void showPrompt()
+    {
+        text.color = Color.white;
+    }
+
     void fadePrompt()
     {
-        timeTillFade = timeTillFade - Time.deltaTime;
-        if (timeTillFade <= 0)
+        timeTillFadeStart -= Time.deltaTime;
+        if (timeTillFadeStart <= 0)
         {
             text.color = new Color(1f, 1f, 1f, Mathf.MoveTowards(text.color.a, 0f, .005f));
         }
 
-        textAlpha = (int) text.color.a;
-        
-        if (textAlpha.Equals(0))
+        curTextAlpha = (int) text.color.a; 
+        if (curTextAlpha.Equals(0))
         {
             startTimer();
         }
@@ -61,6 +64,6 @@ public class Prompt : MonoBehaviour
 
     void startTimer()
     {
-        timerObject.SetActive(true);
+        timerObject.SetActive(true); // timer prefab must start disabled
     }
 }

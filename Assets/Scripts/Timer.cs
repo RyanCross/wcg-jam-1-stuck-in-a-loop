@@ -44,8 +44,7 @@ public class Timer : MonoBehaviour
         }
         else if (timeDisplay == "1")
         {
-            timerText.color = Color.red;
-            
+            timerText.color = Color.red;     
         }
 
         timerText.SetText(timeDisplay);
